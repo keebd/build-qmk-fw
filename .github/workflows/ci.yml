@@ -15,7 +15,7 @@ jobs:
       - uses: ludeeus/action-shellcheck@2.0.0
 
   build-keymap:
-    name: Build DZ65 RGB v3
+    name: Local Keymap Build DZ65 RGB v3
     runs-on: ubuntu-latest
 
     steps:
@@ -27,19 +27,19 @@ jobs:
           local-keymap-path: test-keymap/keymaps/testing-keymap
 
   build-keyboard:
-    name: Build DZ65 RGB v3
+    name: Local Keyboard Build DZ65 RGB v3
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
       - uses: ./
         with:
-          keyboard: dztech/dz65rgb/v3
+          keyboard: test-keyboard
           keymap: default
           local-keyboard-path: test-keyboard
 
   build-helios:
-    name: Build Corne for Helios
+    name: Controller Build Corne for Helios
     runs-on: ubuntu-latest
 
     steps:
