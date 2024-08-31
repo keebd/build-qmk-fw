@@ -4,13 +4,14 @@ Build QMK firmware for your keyboard using your keymap with GitHub Actions.
 
 ## Options
 
-| Input               | Description                                                    | Required | Default      |
-|:--------------------|:---------------------------------------------------------------|:---------|:-------------|
-| `keyboard`          | The target keyboard for this firmware build                    | Yes      |              |
-| `keymap`            | The keymap to build for this firmware                          | Yes      | `default`    |
-| `controller`        | The controller to build for this firmware                      | No       |              |
-| `local-keymap-path` | Path to a local keymap directory to inject into the QMK home   | No       | ` `          |
-| `output-dir`        | Directory in the workspace where built firmware will be placed | No       | `qmk-output` |
+| Input                 | Description                                                    | Required | Default      |
+|:----------------------|:---------------------------------------------------------------|:---------|:-------------|
+| `keyboard`            | The target keyboard for this firmware build                    | Yes      |              |
+| `keymap`              | The keymap to build for this firmware                          | Yes      | `default`    |
+| `controller`          | The controller to build for this firmware                      | No       |              |
+| `local-keyboard-path` | Path to a local keyboard directory to inject into the QMK home | No       | ` `          |
+| `local-keymap-path`   | Path to a local keymap directory to inject into the QMK home   | No       | ` `          |
+| `output-dir`          | Directory in the workspace where built firmware will be placed | No       | `qmk-output` |
 
 The `output-dir` input is the directory in your GitHub Actions workflow's
 workspace where the built firmware images will be placed. The `built-images`
