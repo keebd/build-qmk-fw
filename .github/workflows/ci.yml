@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./
         with:
-          keyboard: test-keyboard
+          keyboard: test-keyboard/dz65rgb/v3
           keymap: default
           local-keyboard-path: test-keyboard
 
