@@ -13,12 +13,12 @@ readonly local_keymap="$6"
 if [ -n "$local_keyboard" ]; then
   keyboard_lookup_dir="/opt/qmk_firmware/keyboards"
 
-  until find "$keyboard_lookup_dir" -type d -name $keyboard | grep -q .; do
+  until find $keyboard_lookup_dir -type d -name $keyboard | grep -q .; do
     keyboard_lookup_dir=$(dirname "$keyboard_lookup_dir")
   done
 
   if [ "$keyboard_lookup_dir" = "/opt/qmk_firmware/keyboards/$keyboard" ]; then
-    echo "Keyboard $keyboard exists in QMK Firmware, use `local-keymap-path` instead."
+    echo "Keyboard $keyboard exists in QMK Firmware, use local-keymap-path instead."
     exit 1
   fi
 
