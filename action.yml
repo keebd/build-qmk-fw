@@ -17,6 +17,9 @@ inputs:
   controller:
     description: The controller to build for this firmware
     required: false
+  local-keyboard-path:
+    description: Path to a local keyboard directory to inject into the QMK home
+    default: ""
   local-keymap-path:
     description: Path to a local keymap directory to inject into the QMK home
     default: ""
@@ -36,4 +39,5 @@ runs:
     - ${{ inputs.keymap }}
     - ${{ inputs.controller }}
     - ${{ inputs.output-dir }}
+    - ${{ inputs.local-keyboard-path }}
     - ${{ inputs.local-keymap-path }}
