@@ -18,7 +18,7 @@ if [ -n "$local_keyboard" ]; then
     exit 1
   fi
 
-  echo "Copying local keyboard $keyboard into $keyboard_lookup_dir"
+  echo "Copying local keyboard $local_keyboard into $keyboard_lookup_dir"
   cp -rv "$local_keyboard" "$keyboard_lookup_dir/$(basename "$local_keyboard")"
 fi
 
