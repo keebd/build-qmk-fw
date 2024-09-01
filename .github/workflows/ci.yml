@@ -27,14 +27,14 @@ jobs:
           local-keymap-path: test_keymap/keymaps/testing-keymap
 
   build-keyboard:
-    name: Local Keyboard Build DZ65 RGB v3
+    name: Local Keyboard Build Dumbpad OLED
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
       - uses: ./
         with:
-          keyboard: test-keyboard/dz65rgb/v3
+          keyboard: test-keyboard/v1x_oled
           keymap: default
           local-keyboard-path: test_keyboard
 
