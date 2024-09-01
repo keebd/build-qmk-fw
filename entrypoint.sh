@@ -44,7 +44,7 @@ echo "qmk compile -kb $keyboard -km $keymap ${controller:+-e CONVERT_TO=$control
 qmk compile -kb "$keyboard" -km "$keymap" ${controller:+-e CONVERT_TO="$controller"}
 
 mkdir -p "$qmk_output"
-find "/opt/qmk_firmware/.build" \( -name '*.hex' -or -name '*.bin' -or -name '*.uf2' \) -exec cp -v {} "$qmk_output" \;
+find "/opt/qmk_firmware/.build" \( -name '*.hex' -or -name '*.bin' -or -name '*.uf2' \) -exec cp -vf {} "$qmk_output" \;
 
 echo "built-images=$(find "$qmk_output" -type f | sed "s|^$qmk_output||" | paste -sd ',')" \
   >> "$GITHUB_OUTPUT"
