@@ -40,6 +40,7 @@ if [ -n "$local_keymap" ]; then
 fi
 
 qmk config user.qmk_home=/opt/qmk_firmware
+echo "qmk compile -kb $keyboard -km $keymap ${controller:+-e CONVERT_TO=$controller}"
 qmk compile -kb "$keyboard" -km "$keymap" ${controller:+-e CONVERT_TO="$controller"}
 
 mkdir -p "$qmk_output"
