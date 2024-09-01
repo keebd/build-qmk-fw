@@ -24,7 +24,7 @@ jobs:
         with:
           keyboard: dztech/dz65rgb/v3
           keymap: testing-keymap
-          local-keymap-path: test-keymap/keymaps/testing-keymap
+          local-keymap-path: test_keymap/keymaps/testing-keymap
 
   build-keyboard:
     name: Local Keyboard Build DZ65 RGB v3
@@ -36,7 +36,7 @@ jobs:
         with:
           keyboard: test-keyboard/dz65rgb/v3
           keymap: default
-          local-keyboard-path: test-keyboard
+          local-keyboard-path: test_keyboard
 
   build-helios:
     name: Controller Build Corne for Helios
