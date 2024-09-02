@@ -11,7 +11,7 @@ readonly local_keymap="$6"
 
 # Used if this keyboard config does not exist in upstream QMK Firmware
 if [ -n "$local_keyboard" ]; then
-  keyboard_lookup_dir="/opt/qmk_firmware/keyboards"
+  keyboard_lookup_dir="/opt/vial-qmk/keyboards"
 
   if [ -d "$keyboard_lookup_dir/$keyboard" ]; then
     echo "Keyboard $keyboard exists in QMK Firmware, use local-keymap-path instead."
@@ -24,13 +24,13 @@ fi
 
 # Find the keymaps directory the same way QMK CLI does
 if [ -n "$local_keymap" ]; then
-  keymap_lookup_dir="/opt/qmk_firmware/keyboards/$keyboard"
+  keymap_lookup_dir="/opt/vial-qmk/keyboards/$keyboard"
 
   until find "$keymap_lookup_dir" -type d -name keymaps | grep -q .; do
     keymap_lookup_dir=$(dirname "$keymap_lookup_dir")
   done
 
-  if [ "$keymap_lookup_dir" = "/opt/qmk_firmware/keyboards" ]; then
+  if [ "$keymap_lookup_dir" = "/opt/vial-qmk/keyboards" ]; then
     echo "Could not find keymaps directory for $keyboard"
     exit 1
   fi
@@ -39,12 +39,14 @@ if [ -n "$local_keymap" ]; then
   cp -rv "$local_keymap" "$keymap_lookup_dir/keymaps/$(basename "$local_keymap")"
 fi
 
-qmk config user.qmk_home=/opt/qmk_firmware
-echo "qmk compile -kb $keyboard -km $keymap ${controller:+-e CONVERT_TO=$controller}"
-qmk compile -kb "$keyboard" -km "$keymap" ${controller:+-e CONVERT_TO="$controller"}
+qmk config user.qmk_home=/opt/vial-qmk
+cd /opt/vial-qmk
+echo "make $keyboard:$keymap ${controller:+-e CONVERT_TO=$controller}"
+make "$keyboard:$keymap" ${controller:+-e CONVERT_TO="$controller"}
+cd $GITHUB_WORKSPACE
 
-mkdir -p "$qmk_output"
-find "/opt/qmk_firmware/.build" \( -name '*.hex' -or -name '*.bin' -or -name '*.uf2' \) -exec cp -vf {} "$qmk_output" \;
+mkdir -vp "$qmk_output"
+find "/opt/vial-qmk/.build" \( -name '*.hex' -or -name '*.bin' -or -name '*.uf2' \) -exec cp -vf {} "$qmk_output" \;
 
 echo "built-images=$(find "$qmk_output" -type f | sed "s|^$qmk_output||" | paste -sd ',')" \
   >> "$GITHUB_OUTPUT"
