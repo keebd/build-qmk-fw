@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: d3adb5/build-qmk-fw@v1
+      - uses: keebd/build-qmk-fw@main
         with:
           keyboard: dztech/dz65rgb/v3
           keymap: my-keymap
