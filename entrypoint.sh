@@ -8,6 +8,7 @@ readonly controller="$3"
 readonly qmk_output="$4"
 readonly local_keyboard="$5"
 readonly local_keymap="$6"
+readonly pin_compatible="$7"
 
 # Used if this keyboard config does not exist in upstream QMK Firmware
 if [ -n "$local_keyboard" ]; then
@@ -40,8 +41,8 @@ if [ -n "$local_keymap" ]; then
 fi
 
 qmk config user.qmk_home=/opt/qmk_firmware
-echo "qmk compile -kb $keyboard -km $keymap ${controller:+-e CONVERT_TO=$controller}"
-qmk compile -kb "$keyboard" -km "$keymap" ${controller:+-e CONVERT_TO="$controller"}
+echo "qmk compile -kb $keyboard -km $keymap ${controller:+-e CONVERT_TO=$controller} ${pin_compatible:+-e PIN_COMPATIBLE=$pin_compatible}"
+qmk compile -kb "$keyboard" -km "$keymap" ${controller:+-e CONVERT_TO="$controller"} ${pin_compatible:+-e PIN_COMPATIBLE="$pin_compatible"}
 
 mkdir -p "$qmk_output"
 find "/opt/qmk_firmware/.build" \( -name '*.hex' -or -name '*.bin' -or -name '*.uf2' \) -exec cp -vf {} "$qmk_output" \;

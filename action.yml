@@ -23,6 +23,11 @@ inputs:
   local-keymap-path:
     description: Path to a local keymap directory to inject into the QMK home
     default: ""
+  pin-compatible:
+    description: >-
+      Override the board's pin_compatible base (e.g. "promicro"). Needed to use
+      CONVERT_TO on upstream keyboards that don't declare a development_board.
+    default: ""
   output-dir:
     description: Directory in the workspace where built firmware will be placed
     default: qmk-output
@@ -41,3 +46,4 @@ runs:
     - ${{ inputs.output-dir }}
     - ${{ inputs.local-keyboard-path }}
     - ${{ inputs.local-keymap-path }}
+    - ${{ inputs.pin-compatible }}
