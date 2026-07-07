@@ -8,6 +8,7 @@ readonly controller="$3"
 readonly qmk_output="$4"
 readonly local_keyboard="$5"
 readonly local_keymap="$6"
+readonly pin_compatible="$7"
 
 # Used if this keyboard config does not exist in upstream QMK Firmware
 if [ -n "$local_keyboard" ]; then
@@ -41,8 +42,8 @@ fi
 
 qmk config user.qmk_home=/opt/vial-qmk
 cd /opt/vial-qmk
-echo "make $keyboard:$keymap ${controller:+-e CONVERT_TO=$controller}"
-make "$keyboard:$keymap" ${controller:+-e CONVERT_TO="$controller"}
+echo "make $keyboard:$keymap ${controller:+-e CONVERT_TO=$controller} ${pin_compatible:+PIN_COMPATIBLE=$pin_compatible}"
+make "$keyboard:$keymap" ${controller:+-e CONVERT_TO="$controller"} ${pin_compatible:+PIN_COMPATIBLE="$pin_compatible"}
 cd $GITHUB_WORKSPACE
 
 mkdir -vp "$qmk_output"
